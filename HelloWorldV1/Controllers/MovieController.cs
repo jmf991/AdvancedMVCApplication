@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelloWorldV1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,12 +27,18 @@ namespace HelloWorldV1.Controllers
         [HttpPost]
         public ActionResult Add(Models.Movie movieFromView)
         {
-            using (var db = new Models.MovieDBContext())
+            if (ModelState.IsValid)
             {
-                db.Movies.Add(movieFromView);
-                db.SaveChanges();
+                //Save the data in db and show the list of movies 
+                using (var db = new MovieDBContext())
+                {
+                    db.Movies.Add(movieFromView);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+
+            return View(movieFromView);
         }
     }
 }
