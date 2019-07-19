@@ -5,22 +5,15 @@
 <table border="1">
 
     <tr>
-
-        <th>Rank</th>
-
         <th>Title</th>
-
         <th>Year</th>
-
     </tr>
 
     @foreach (var movie in Model)
     {
         <tr>
-            <td>@movie.Rank</td>
             <td>@movie.Title</td>
             <td>@movie.Year</td>
         </tr>
-
     }
 </table>

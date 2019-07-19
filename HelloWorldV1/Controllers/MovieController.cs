@@ -11,14 +11,27 @@ namespace HelloWorldV1.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            Models.Movies movies = new Models.Movies();
-            movies.SeedMovies();
-            List<Models.Movie> moviesList = movies.GetMoviesList();
-            return View(moviesList);
+            using (var db = new Models.MovieDBContext())
+            {
+                var movies = db.Movies.ToList();
+                return View(movies);
+            }
         }
-        public ActionResult MovieOfTheMonth()
+        [HttpGet]
+        public ActionResult Add()
         {
-            return View();
+            Models.Movie movie = new Models.Movie();
+            return View(movie);
+        }
+        [HttpPost]
+        public ActionResult Add(Models.Movie movieFromView)
+        {
+            using (var db = new Models.MovieDBContext())
+            {
+                db.Movies.Add(movieFromView);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
     }
 }
