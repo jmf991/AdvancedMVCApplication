@@ -1,0 +1,32 @@
+﻿@model HelloWorldV1.Models.Movie
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("<strong>'Edit'</strong>", "Movie", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <h2>Edit Movie</h2>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Title)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Year, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Year)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Edit Movie" />
+        </div>
+    </div>
+
+}

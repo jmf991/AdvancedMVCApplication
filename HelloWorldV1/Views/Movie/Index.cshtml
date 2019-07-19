@@ -2,7 +2,8 @@
 
 <b> Movies List:</b>
 
-<table border="1">
+<h4>@Html.ActionLink("Add a movie here", "Add")</h4>
+<table class="table">
 
     <tr>
         <th>Title</th>
@@ -14,6 +15,8 @@
         <tr>
             <td>@movie.Title</td>
             <td>@movie.Year</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = @movie.Id })</td>
+            <td>@Html.ActionLink("Delete", "Delete", new { id = @movie.Id })</td>
         </tr>
     }
 </table>
